@@ -1,9 +1,20 @@
 import logo from "./assets/logo.svg";
-import trash from "./assets/trash.svg";
-import todo from "./assets/todo.svg";
-import done from "./assets/done.svg";
+import { List } from "./components/list";
+import { IPurchaseList, purchaseList } from "./data/listOfItens";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [toBuy, setToBuy] = useState<IPurchaseList[]>([]);
+  const [purchasedItems, setPurchasedItems] = useState<IPurchaseList[]>([]);
+
+  useEffect(() => {
+    const itemsToBuy = purchaseList.filter((item) => !item.purchased);
+    const itemsPurchased = purchaseList.filter((item) => item.purchased);
+
+    setToBuy(itemsToBuy);
+    setPurchasedItems(itemsPurchased);
+  }, [purchaseList]);
+
   return (
     <main className="max-w-2xl px-6 py-12 pb-20 mx-auto my-10 bg-white md:my-20 md:px-32 md:rounded-3xl">
       <header className="text-center">
@@ -42,7 +53,8 @@ function App() {
           +
         </button>
       </form>
-      <section className="mt-10 space-y-3 ">
+      <List itens={toBuy} />
+      {/* <section className="mt-10 space-y-3 ">
         <article className="flex w-full gap-4">
           <img src={todo} alt="#" />
           <div className="flex-1">
@@ -69,37 +81,12 @@ function App() {
           />
         </article>
         <hr />
-      </section>
+      </section> */}
       <section className="mt-16 space-y-3">
         <h2 className="mb-10 text-3xl text-center font-display">
           Itens já comprados
         </h2>
-        <article className="flex w-full gap-4">
-          <img src={done} alt="#" />
-          <div className="flex-1">
-            <p className="line-through text-slate-400">Leite</p>
-            <p className="text-sm line-through text-slate-400">3 Caixas</p>
-          </div>
-          <img
-            src={trash}
-            alt="ícone de lixeira"
-            className="justify-self-end"
-          />
-        </article>
-        <hr />
-        <article className="flex w-full gap-4">
-          <img src={done} alt="#" />
-          <div className="flex-1">
-            <p className="line-through text-slate-400">Maçã</p>
-            <p className="text-sm line-through text-slate-400">500g</p>
-          </div>
-          <img
-            src={trash}
-            alt="ícone de lixeira"
-            className="justify-self-end"
-          />
-        </article>
-        <hr />
+       <List itens={purchasedItems} />
       </section>
     </main>
   );
