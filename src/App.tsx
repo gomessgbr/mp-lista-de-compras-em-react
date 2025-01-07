@@ -64,6 +64,7 @@ function App() {
         <button
           form={id}
           className="self-end flex-shrink h-10 px-4 font-extrabold text-white rounded-lg bg-fuchsia-300"
+          data-testid="button-add"
         >
           +
         </button>
