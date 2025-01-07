@@ -1,7 +1,7 @@
-import logo from './assets/logo.svg';
-import trash from './assets/trash.svg';
-import todo from './assets/todo.svg';
-import done from './assets/done.svg';
+import logo from "./assets/logo.svg";
+import trash from "./assets/trash.svg";
+import todo from "./assets/todo.svg";
+import done from "./assets/done.svg";
 
 function App() {
   return (
@@ -25,6 +25,7 @@ function App() {
             type="text"
             id="name"
             className="block w-full px-3 py-2 border rounded-lg border-slate-300 text-slate-700"
+            data-testid="name"
           />
         </div>
         <div className="flex-shrink">
