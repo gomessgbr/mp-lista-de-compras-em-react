@@ -23,11 +23,5 @@ export const purchaseList: IPurchaseList[] = [
     item: "leite",
     amount: "500g",
     purchased: false,
-  },
-  {
-    id: "1237",
-    item: "leite",
-    amount: "500g",
-    purchased: true,
-  },
+  }
 ];
