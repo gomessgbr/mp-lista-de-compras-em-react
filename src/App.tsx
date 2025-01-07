@@ -6,7 +6,7 @@ import { FormEvent, useId, useState } from "react";
 function App() {
   const id = useId();
   const [toBuy, setToBuy] = useState<IPurchaseList[]>(purchaseList);
-  const [purchasedItems, setPurchasedItems] = useState<IPurchaseList[]>([]);
+  // const [purchasedItems, setPurchasedItems] = useState<IPurchaseList[]>([]);
 
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -26,9 +26,9 @@ function App() {
     setToBuy([...toBuy, newItem]);
   }
 
-  function addPurchaseItem (){
-    setPurchasedItems([])
-  }
+  // function addPurchaseItem (){
+  //   setPurchasedItems([])
+  // }
   return (
     <main className="max-w-2xl px-6 py-12 pb-20 mx-auto my-10 bg-white md:my-20 md:px-32 md:rounded-3xl">
       <header className="text-center">
@@ -78,7 +78,7 @@ function App() {
         <h2 className="mb-10 text-3xl text-center font-display">
           Itens já comprados
         </h2>
-        <List itens={purchasedItems} />
+        {/* <List itens={purchasedItems} /> */}
       </section>
     </main>
   );
