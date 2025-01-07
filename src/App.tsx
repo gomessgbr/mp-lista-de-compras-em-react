@@ -18,7 +18,7 @@ function App() {
     const quantity = formData.get("quantity") as string;
 
     const newItem: IPurchaseList = {
-      id: purchaseList[purchaseList.length - 1].id + 1,
+      id: (purchaseList[purchaseList.length - 1].id + 1).toString(),
       item: name,
       amount: quantity,
       purchased: false,
