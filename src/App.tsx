@@ -25,6 +25,10 @@ function App() {
     };
     setToBuy([...toBuy, newItem]);
   }
+
+  function addPurchaseItem (){
+    setPurchasedItems([])
+  }
   return (
     <main className="max-w-2xl px-6 py-12 pb-20 mx-auto my-10 bg-white md:my-20 md:px-32 md:rounded-3xl">
       <header className="text-center">
