@@ -44,4 +44,21 @@ describe("purchase list", () => {
     // Verifica que o item foi adicionado à lista "marcada"
     expect(markedList).toHaveTextContent("Leite");
   });
+
+  it("should delete an item when clicking the delete button", () => {
+    render(<App />);
+  
+    // Obtenha as listas
+    const unMarkedList = screen.getByTestId("unmarked-list");
+    const trashButton = screen.getAllByAltText("icone de lixeira");
+  
+    // Verifique que o item está presente inicialmente
+    expect(unMarkedList).toHaveTextContent("Leite");
+  
+    // Clique no botão de delete 
+    fireEvent.click(trashButton[0]);
+  
+    // Verifique que o item foi removido
+    expect(unMarkedList).not.toHaveTextContent("Leite");
+  });
 });
