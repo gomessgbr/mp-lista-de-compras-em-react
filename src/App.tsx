@@ -6,8 +6,7 @@ import { FormEvent, useId, useState } from "react";
 function App() {
   const id = useId();
   const [toBuy, setToBuy] = useState<IPurchaseList[]>(purchaseList);
-  // const [purchasedItems, setPurchasedItems] = useState<IPurchaseList[]>([]);
-
+  const [purchasedItems, setPurchasedItems] = useState<IPurchaseList[]>([]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -26,9 +25,26 @@ function App() {
     setToBuy([...toBuy, newItem]);
   }
 
-  // function addPurchaseItem (){
-  //   setPurchasedItems([])
-  // }
+  function handleMarket(itemId: string) {
+    const markedItem = toBuy.find((item) => item.id === itemId);
+    if (markedItem) {
+      setToBuy(toBuy.filter((item) => item.id !== itemId));
+
+      setPurchasedItems([
+        ...purchasedItems,
+        { ...markedItem, purchased: true },
+      ]);
+    }
+  }
+
+  function handleDelte(itemId: string, isPurchased: boolean) {
+    if (isPurchased) {
+      const filtred = purchasedItems.filter((item) => item.id !== itemId);
+      setPurchasedItems(filtred);
+    }
+    const filtred = toBuy.filter((item) => item.id !== itemId);
+    setToBuy(filtred);
+  }
   return (
     <main className="max-w-2xl px-6 py-12 pb-20 mx-auto my-10 bg-white md:my-20 md:px-32 md:rounded-3xl">
       <header className="text-center">
@@ -73,12 +89,12 @@ function App() {
           +
         </button>
       </form>
-      <List itens={toBuy} />
+      <List itens={toBuy} onMarked={handleMarket} onDelete={handleDelte} />
       <section className="mt-16 space-y-3">
         <h2 className="mb-10 text-3xl text-center font-display">
           Itens já comprados
         </h2>
-        {/* <List itens={purchasedItems} /> */}
+        <List itens={purchasedItems} onMarked={handleMarket} onDelete={handleDelte} />
       </section>
     </main>
   );
