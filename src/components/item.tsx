@@ -15,9 +15,10 @@ export function Item({ item, onAction }: IItem) {
       <article className="flex w-full gap-4">
         <img
           src={item.purchased ? done : todo}
-          alt="#"
+          alt="botão de check"
           onClick={() => !item.purchased && onAction.onMarked(item.id)}
         />
+
         <div className="flex-1">
           <p className={`${item.purchased && "line-through"}`}>{item.item}</p>
           <p
@@ -30,7 +31,7 @@ export function Item({ item, onAction }: IItem) {
         </div>
         <img
           src={trash}
-          alt="ícone de lixeira"
+          alt="icone de lixeira"
           className="justify-self-end"
           onClick={() => onAction.onDelete(item.id, item.purchased)}
         />

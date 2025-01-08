@@ -29,9 +29,8 @@ function App() {
     const markedItem = toBuy.find((item) => item.id === itemId);
     if (markedItem) {
       setToBuy(toBuy.filter((item) => item.id !== itemId));
-
-      setPurchasedItems([
-        ...purchasedItems,
+      setPurchasedItems((prev) => [
+        ...prev,
         { ...markedItem, purchased: true },
       ]);
     }
@@ -89,12 +88,22 @@ function App() {
           +
         </button>
       </form>
-      <List itens={toBuy} onMarked={handleMarket} onDelete={handleDelte} />
+      <List
+        itens={toBuy}
+        onMarked={handleMarket}
+        onDelete={handleDelte}
+        data-testid="unmarked-list"
+      />
       <section className="mt-16 space-y-3">
         <h2 className="mb-10 text-3xl text-center font-display">
           Itens já comprados
         </h2>
-        <List itens={purchasedItems} onMarked={handleMarket} onDelete={handleDelte} />
+        <List
+          itens={purchasedItems}
+          onMarked={handleMarket}
+          onDelete={handleDelte}
+          data-testid="marked-list"
+        />
       </section>
     </main>
   );

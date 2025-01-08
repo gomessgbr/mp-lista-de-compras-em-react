@@ -6,9 +6,9 @@ export interface IList {
   onDelete: (itemId: string, isPurchased: boolean) =>void;
   onMarked: (itemId:string) =>void
 }
-export function List({ itens, onMarked, onDelete }: IList) {
+export function List({ itens, onMarked, onDelete, ...rest  }: IList) {
   return (
-    <section className="mt-10 space-y-3 ">
+    <section className="mt-10 space-y-3" {...rest}>
       {itens.map((item) => (
         <Item key={item.id} item={item} onAction={{onMarked, onDelete}}  />
       ))}
